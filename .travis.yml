@@ -12,6 +12,8 @@ before_install:
    port="$(ps -ef | grep docker | awk '{print $11}' | cut -d ':' -f 3)"
    sudo stop docker
    sudo docker daemon -H tcp://0.0.0.0:$port -H unix:///var/run/docker.sock >> dockerlogfile.log 2>&1 &
+   
+before_script:
 - docker pull carlad/sinatra
 - docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
 - docker ps -a
