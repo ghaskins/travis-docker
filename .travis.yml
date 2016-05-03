@@ -4,9 +4,8 @@ services:
  - docker
 
 before_install:
-
- - echo "Starting Docker Daemon "
- - |
+- echo "Starting Docker Daemon "
+- |
    export TR_PULL_REQUEST="$TRAVIS_PULL_REQUEST" && export GIT_USER="$TRAVIS_REPO_SLUG"
    USER_NAME="$(echo $GIT_USER | cut -d '/' -f 1)" && REPO_NAME="$(echo $GIT_USER | cut -d '/' -f 2)"
    ip="$(ifconfig docker0 | grep "inet addr:" | awk '{print $2}' | cut -d ':' -f 2)"
